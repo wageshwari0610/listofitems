@@ -15,17 +15,17 @@ export default function SortByTitle(props) {
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <Select
           value={age}
-          onChange={handleChange}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
+          onChange={handleChange}
         >
           <MenuItem value="">
             <em>Sort By : </em>
           </MenuItem>
-          <MenuItem value="title" onClick={() => props.onSort(age)}>
+          <MenuItem value="title" onClick={() => props.onSort("title")}>
             Title
           </MenuItem>
-          <MenuItem value="post" onClick={() => props.onSort(age)}>
+          <MenuItem value="body" onClick={() => props.onSort("body")}>
             Post
           </MenuItem>
         </Select>

@@ -28,12 +28,13 @@ function App() {
   const pageSize = 10;
 
   const handleSortBy = (path) => {
-    if (path == "") {
+    if (path === "") {
       return;
+    } else {
+      console.log("path", path);
+      const sortedPost = _.orderBy(post, path, sortOrder);
+      setsortedData(sortedPost);
     }
-    console.log("path", path);
-    const sortedPost = _.orderBy(post, path, sortOrder);
-    setsortedData(sortedPost);
   };
 
   const handlePageChange = (page) => {
