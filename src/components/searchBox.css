@@ -1,0 +1,23 @@
+.searchbox {
+  width: 300px;
+  border-radius: 15px;
+  padding-left: 30px;
+  height: 40px;
+}
+.search-box {
+  position: relative;
+}
+.icon-box {
+  display: block;
+  height: 2rem;
+  padding: 2px;
+  position: absolute;
+  text-align: center;
+  width: 2rem;
+  z-index: 2;
+}
+
+.searchicon {
+  float: left;
+  margin-left: 30%;
+}

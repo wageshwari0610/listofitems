@@ -1,0 +1,12 @@
+.navHeading {
+  font-family: serif;
+}
+
+.mynavbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  align-items: center;
+  background-color: #e3f2fdcc;
+}
