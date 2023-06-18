@@ -4,10 +4,10 @@ import NavBar from "./components/NavBar";
 import SearchBox from "./components/searchBox";
 import BoxCard from "./components/boxCard";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Pagination from "./components/pagination";
 import { paginate } from "./components/paginate";
 import _ from "lodash";
+import axios from "axios";
 
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
@@ -28,20 +28,26 @@ function App() {
   const pageSize = 10;
 
   const handleSortBy = (path) => {
-    if (path === "") {
-      return;
-    } else {
-      console.log("path", path);
-      const sortedPost = _.orderBy(post, path, sortOrder);
+    if (path == "title") {
+      const sortedPost = _.orderBy(post, "title", sortOrder);
+      setsortedData(sortedPost);
+    }
+    if (path == "body") {
+      const sortedPost = _.orderBy(post, "body", sortOrder);
       setsortedData(sortedPost);
     }
   };
 
+  const paginateSortedData = paginate(sortedData, currentPage, pageSize);
+
+  const paginateData = paginate(post, currentPage, pageSize);
+  {
+    console.log(paginateData);
+  }
+
   const handlePageChange = (page) => {
     setcurrentPage(page);
   };
-
-  const paginateData = paginate(sortedData, currentPage, pageSize);
 
   const getUrl = () => {
     if (searchQuery !== "") {
@@ -55,11 +61,9 @@ function App() {
       .get(getUrl())
       .then((response) => {
         setPost(response.data);
-        console.log(".then");
       })
       .catch((error) => {
         alert("Posts are not available");
-        console.log("catch");
       });
   }, [post]);
 
@@ -73,11 +77,19 @@ function App() {
         </div>
 
         {post.length > 0 ? (
-          <div>
-            {paginateData.map((data) => (
-              <BoxCard title={data.title} description={data.body} />
-            ))}
-          </div>
+          paginateSortedData.length === 0 ? (
+            <div>
+              {paginateData.map((data) => (
+                <BoxCard title={data.title} description={data.body} />
+              ))}
+            </div>
+          ) : (
+            <div>
+              {paginateSortedData.map((data) => (
+                <BoxCard title={data.title} description={data.body} />
+              ))}
+            </div>
+          )
         ) : (
           <div className="noResultFound">
             <p>No Result Found !</p>
