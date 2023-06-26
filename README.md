@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+You Can view the project on below URL
+Site URL : https://wageshwari0610.github.io/listofitems/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
